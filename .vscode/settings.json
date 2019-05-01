@@ -1,0 +1,19 @@
+{
+  "peacock.darkForegroundColor": "#3CB371",
+  "peacock.lightForegroundColor": "#3CB371",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#65c89b",
+    "activityBar.foreground": "#3cb371",
+    "activityBar.inactiveForeground": "#7FFF00",
+    "activityBarBadge.background": "#006400",
+    "activityBarBadge.foreground": "#3cb371",
+    "titleBar.activeBackground": "#808000",
+    "titleBar.inactiveBackground": "#42b88399",
+    "titleBar.activeForeground": "#3cb371",
+    "titleBar.inactiveForeground": "#7FFF00",
+    "statusBar.background": "#42b883",
+    "statusBarItem.hoverBackground": "#359268",
+    "statusBar.foreground": "#3cb371"
+  },
+  "editor.tabCompletion": "on",
+}
