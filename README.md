@@ -1,15 +1,22 @@
 #Initiate
-Make create the file executable `chmod +x createTodaysFile.sh.sh`
+Run using `node createStructure.js` and it will generate this folder structure for the rest of the year
 
-Run using `./createTodaysFile.sh` and it will generate this folder structure
 ``` 
 +-- CURRENT_YEAR
 |   +-- CURRENT_MONTH
-|      +-- CURRENT_DATE.txt
+|      +-- WEEK_RANGE.txt
+|      +-- WEEK_RANGE.txt
+|      +-- WEEK_RANGE.txt
+|      +-- WEEK_RANGE.txt
+|   +-- NEXT_MONTH
+|      +-- WEEK_RANGE.txt
+|      +-- WEEK_RANGE.txt
+|      +-- WEEK_RANGE.txt
+|      +-- WEEK_RANGE.txt
+|   +-- etc...
 ```
 
-Open <todaysDate>.txt and start typing `note` you can tab complete and it will generate the note taking file
-
+Each file will have Sunday - Saturday in this form:
 ```
 ===================================
 $CURRENT_DAY_NAME
