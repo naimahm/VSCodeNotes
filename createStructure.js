@@ -1,92 +1,9 @@
 const fs = require('fs');
-const path = require('path');
+const util = require('util');
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const fileTemplate = 
-`===================================
-Sunday
-===================================
-
-
-To do:
-  -
-
-
-Notes:
-  -
-
-===================================
-Monday
-===================================
-
-
-To do:
-  -
-
-
-Notes:
-  -
-  
-===================================
-Tuesday
-===================================
-
-
-To do:
-  -
-
-
-Notes:
-  -
-===================================
-Wednesday
-===================================
-
-
-To do:
-  -
-
-
-Notes:
-  -
-===================================
-Thursday
-===================================
-
-
-To do:
-  -
-
-
-Notes:
-  -
-===================================
-Friday
-===================================
-
-
-To do:
-  -
-
-
-Notes:
-  -
-
-Notes:
-  -
-===================================
-Saturday
-===================================
-
-
-To do:
-  -
-
-
-Notes:
-  -
-
-`;
+const mkdir = util.promisify(fs.mkdir);
+const copyFile = util.promisify(fs.copyFile);
 
 const getWeeksInMonth = (month, year) => {
   var date = new Date(year, month, 1);
@@ -129,19 +46,18 @@ const getWeeksInMonth = (month, year) => {
   for(let i = currentZeroIdxMonth; i < (monthsLeft + currentZeroIdxMonth + 1); i++){
     let monthName = months[i];
     let folderPath = `./${currentYear}/${i+1}_${monthName}`;
-    fs.mkdir(folderPath, { recursive: true }, (err) => {
-      if (err) throw err;
-    });
-    for(let week of getWeeksInMonth(i, currentYear)){
-      let filename = `${folderPath}/${week.start}_${week.end}.txt`;
-      try{
-        fs.closeSync(fs.openSync(filename, 'w'));
-      }catch(e){
-
+    try{
+      await mkdir(folderPath, { recursive: true });
+      for(let week of getWeeksInMonth(i, currentYear)){
+        let filename = `${folderPath}/${week.start}_${week.end}.txt`;
+        try{
+          await copyFile('./templateFile.txt', filename, fs.constants.COPYFILE_EXCL);
+        }catch(e){
+          console.log('Unable to create file ' + filename, e.message);
+        }
       }
-      fs.writeFile(filename, fileTemplate, { flag: 'wx' }, (err) => {
-        // if (err) throw err;
-      });
+    }catch(e){
+      console.log('Unable to create directory ' + folderPath, e.message);
     }
   }
 
