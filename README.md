@@ -1,4 +1,5 @@
-#Initiate
+# Initiate
+
 Run using `node createStructure.js` and it will generate this folder structure for the rest of the year
 
 ``` 
